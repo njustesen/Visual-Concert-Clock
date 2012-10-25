@@ -71,10 +71,14 @@ class ClockPanel extends JPanel implements ActionListener{
         
         // Draw schedule
         Act currentAct = schedule.getCurrentAct();
-        Act nextAct = schedule.getNextAct();
+        if (currentAct != null){
+        	System.out.println("Current act: " + schedule.getCurrentAct().getName());
+        }
         
-        //currentAct.getName();
-        //nextAct.getName();
+        Act nextAct = schedule.getNextAct();
+        if (nextAct != null){
+        	System.out.println("Next act: " + schedule.getNextAct().getName());
+        }
         
         // DRAW
         
@@ -88,7 +92,7 @@ class ClockPanel extends JPanel implements ActionListener{
         rotH.setToRotation(Math.PI * (hour+min/60.0)/6.0);
         rotM.setToRotation(Math.PI * min /30.0);
         rotS.setToRotation(Math.PI * sec /30.0);
-        schedule.update(hour, min);
+        schedule.update(9, 55);
         
         repaint();
 	}

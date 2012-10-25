@@ -2,6 +2,7 @@ import java.util.ArrayList;
 
 /**
  *  A schedule for concerts.
+ *  Only works for concerts that starts after 16:00 and ends before 04:00.
  */
 public class ConcertSchedule{
 	
@@ -29,9 +30,13 @@ public class ConcertSchedule{
 	}
 	
 	public Act getNextAct() {
-		int index = acts.indexOf(currentAct);
-		if (index < acts.size() - 1){
-			return acts.get(index+1);
+		if (currentAct == null){
+			return acts.get(0);
+		} else {
+    		int index = acts.indexOf(currentAct);
+    		if (index < acts.size() - 1){
+    			return acts.get(index+1);
+    		}
 		}
 		return null;
 	}
@@ -43,26 +48,32 @@ public class ConcertSchedule{
 	 * @param min
 	 */
 	public void update(int hours, int min){
-		if (currentAct == null && acts.size() > 0){
-			currentAct = acts.get(0);
-		}
-		if (getNextAct() != null){
-			if (getNextAct().getHour() > hours){
+		
+		for(Act a : acts){
+			
+			if (hours > 4){
 				
-				setNextActToPlay();
-				
-			} else if (getNextAct().getHour() == hours){
-				if (getNextAct().getMinutes() >= min){
+				if (a.getHour() > 4){
 					
-					setNextActToPlay();
+					if (a.getHour() < hours || a.getHour() == hours && a.getMinutes() <= min){
+						currentAct = a;
+					}
+				
+				}
+				
+			} else {
+			
+    			if (a.getHour() > 4){
+    				
+    				currentAct = a;
+    				
+    			} else if (a.getHour() < hours || a.getHour() == hours && a.getMinutes() <= min){
+					
+					currentAct = a;
 					
 				}
 			}
 		}
-	}
-
-	private void setNextActToPlay() {
-		currentAct = getNextAct();
 	}
 	
 }

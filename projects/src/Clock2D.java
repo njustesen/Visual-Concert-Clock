@@ -27,12 +27,12 @@ public class Clock2D extends JApplet {
 		ClockPanel panel = new ClockPanel();
         getContentPane().add(panel);
         
-        // Setup schedule
+        // Setup schedule -- MUST BE IN ORDER -- 12hour clock times only
         schedule = new ConcertSchedule();
-        schedule.addAct(new Act("Rammstein", 19, 0));
-        schedule.addAct(new Act("Rage Against the Machine", 20, 30));
-        schedule.addAct(new Act("Jakob Med K", 21, 45));
-        schedule.addAct(new Act("Justin Bieber", 23, 45));
+        schedule.addAct(new Act("Rammstein", 7, 0));
+        schedule.addAct(new Act("Rage Against the Machine", 8, 30));
+        schedule.addAct(new Act("Jakob Med K", 9, 45));
+        schedule.addAct(new Act("Justin Bieber", 11, 45));
         schedule.addAct(new Act("Justin Bieber, Again!", 0, 50));
         schedule.addAct(new Act("Jakob Med K", 1, 30));
         
